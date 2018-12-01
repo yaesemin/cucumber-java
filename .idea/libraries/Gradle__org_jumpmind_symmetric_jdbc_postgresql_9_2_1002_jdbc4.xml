@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jumpmind.symmetric.jdbc:postgresql:9.2-1002-jdbc4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jumpmind.symmetric.jdbc/postgresql/9.2-1002-jdbc4/65b528162f7cf20b4d44bc31a446724e217ba35b/postgresql-9.2-1002-jdbc4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
