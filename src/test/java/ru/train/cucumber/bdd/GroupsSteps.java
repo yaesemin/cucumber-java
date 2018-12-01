@@ -1,6 +1,7 @@
 package ru.train.cucumber.bdd;
 
 
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -15,6 +16,8 @@ public class GroupsSteps {
     private GroupData newGroup;
     private HomePage homePage;
 
+    private int groupsCountOnGroupPage;
+
 
     @Before
     public void init() {
@@ -25,8 +28,6 @@ public class GroupsSteps {
     public void stop() {
         app.stop();
     }
-
-
 
 
     public GroupsSteps(ApplicationManger app) {
@@ -69,4 +70,26 @@ public class GroupsSteps {
     }
 
 
+    @When("^user delete random group$")
+    public void userDeleteRandomGroup() {
+        app.getPageObjectManager().getGroupPage().deleteRandomGroup();
+    }
+
+    @When("^user ensure groups exist and if not create it$")
+    public void userEnsureGroupsExistAndIfNotCreateIt() {
+        groupsCountOnGroupPage = app.getPageObjectManager().getGroupPage().getGroupsCountOnGroupPage();
+        if (groupsCountOnGroupPage == 0) {
+            app.getPageObjectManager().getGroupPage().createNewGroup();
+            userCreateGroupWithNameHeaderFooter("some", "some", "some");
+        }
+    }
+
+    @When("^user delete all group if it exist$")
+    public void userDeleteAllGroup() {
+        if (groupsCountOnGroupPage != 0)
+            for (int i = 0; i < groupsCountOnGroupPage; i++) {
+                app.getPageObjectManager().getGroupPage().selectGroup(i);
+            }
+        app.getPageObjectManager().getGroupPage().deleteSelectedGroups();
+    }
 }

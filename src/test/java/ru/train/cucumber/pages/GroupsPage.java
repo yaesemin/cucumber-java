@@ -29,4 +29,21 @@ public class GroupsPage {
     public void submitCreation(){
         driver.findElement(By.name("submit")).click();
     }
+
+    public int getGroupsCountOnGroupPage(){
+        return driver.findElements(By.name("selected[]")).size();
+    }
+
+    public void deleteRandomGroup() {
+        driver.findElement(By.xpath("//input[@name='selected[]']")).click();
+        deleteSelectedGroups();
+    }
+
+    public void selectGroup(int index) {
+        driver.findElements(By.name("selected[]")).get(index).click();
+    }
+
+    public void deleteSelectedGroups() {
+        driver.findElement(By.name("delete")).click();
+    }
 }
